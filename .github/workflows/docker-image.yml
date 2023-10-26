@@ -37,7 +37,7 @@ jobs:
       id: ecr
       uses: jwalton/gh-ecr-push@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         region: us-east-2
         image: 2048-game:v1
