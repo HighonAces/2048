@@ -33,7 +33,7 @@ jobs:
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: srujan-ecr-repo
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: 2048-game
       run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
