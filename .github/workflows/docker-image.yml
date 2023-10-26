@@ -36,5 +36,4 @@ jobs:
         IMAGE_TAG: 2048
       run: |
         docker build -t 2048-game .
-        docker tag 2048-game srujan-ecr-repo:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:2048-game
