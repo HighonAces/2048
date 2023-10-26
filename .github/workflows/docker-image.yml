@@ -29,11 +29,15 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to amazon ECR
-      env:
-        ECR_REGISTRY: $${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: srujan-ecr-repo
-        IMAGE_TAG: 2048
+    - name: Build
       run: |
-        docker build -t 2048-game .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:2048-game
+        docker build -t 2048-game:v1 .
+    
+    - name: Push to ECR
+      id: ecr
+      uses: jwalton/gh-ecr-push@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region: us-east-2
+        image: 2048-game:v1
